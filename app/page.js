@@ -27,7 +27,7 @@ export default function Home() {
             setIsLoading(true);
 
             setTimeout(() => {
-              setSummary("This is where the AI-generated summary will appear.");
+              setSummary("/api/summarize");
               setIsLoading(false);
             }, 1000);
           }}
@@ -36,9 +36,9 @@ export default function Home() {
         <SummaryCard
           summary={summary}
           isLoading={isLoading}
-          onSave={() =>
-            alert("Save feature will be connected to Azure Blob Storage later.")
-          }
+          onSave={() => {
+            console.log("Save feature will be connected to Azure Blob Storage later.");
+          }}
         />
 
         <div className="mt-10 flex justify-center gap-4">

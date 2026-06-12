@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { BookOpenText } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -11,9 +12,10 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-4xl items-center justify-between">
         <Link
           href="/"
-          className="text-xl font-bold text-sky-700"
+          className="flex items-center gap-2 text-xl font-bold text-slate-600"
         >
-          Study Notes Assistant
+          <BookOpenText size={24} />
+          <span>Study Notes Assistant</span>
         </Link>
 
         <div className="flex gap-2">

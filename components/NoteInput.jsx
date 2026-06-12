@@ -1,7 +1,11 @@
-export default function NoteInput({ notes, setNotes, onGenerate, isLoading }) {
+export default function NoteInput({
+  notes,
+  setNotes,
+  onGenerate,
+  isLoading,
+}) {
   return (
     <div className="rounded-3xl bg-white/90 p-6 shadow-lg shadow-sky-100">
-
       <textarea
         value={notes}
         onChange={(event) => setNotes(event.target.value)}
@@ -14,13 +18,24 @@ export default function NoteInput({ notes, setNotes, onGenerate, isLoading }) {
           {notes.length} characters
         </p>
 
-        <button
-          onClick={onGenerate}
-          disabled={!notes.trim() || isLoading}
-          className="rounded-xl bg-gradient-to-r from-sky-400 to-blue-300 px-5 py-3 font-medium text-white hover:from-sky-500 hover:to-blue-400 disabled:cursor-not-allowed disabled:bg-slate-300"
-        >
-          {isLoading ? "Generating..." : "Generate Summary"}
-        </button>
+        <div className="flex gap-3">
+          <button
+            onClick={() => setNotes("")}
+            disabled={!notes.trim()}
+            className="px-2 py-3 text-sm font-medium text-slate-500 hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Clear Notes
+          </button>
+
+          <button
+            onClick={onGenerate}
+            disabled={!notes.trim() || isLoading}
+            className="rounded-xl bg-linear-to-r from-green-300 to-green-400 px-5 py-3 font-medium text-white
+             hover:from-green-500 hover:to-green-600 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {isLoading ? "Generating..." : "Generate Summary"}
+          </button>
+        </div>
       </div>
     </div>
   );

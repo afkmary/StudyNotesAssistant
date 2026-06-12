@@ -1,6 +1,35 @@
+import { Copy, Check } from "lucide-react";
+import { useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 
-export default function SummaryCard({ summary, onSave, isLoading }) {
+export default function SummaryCard({
+  summary,
+  onSave,
+  isLoading,
+}) {
+  const [copied, setCopied] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(summary);
+
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
+
+  const handleSave = () => {
+    onSave?.();
+
+    setSaved(true);
+
+    setTimeout(() => {
+      setSaved(false);
+    }, 2000);
+  };
+
   if (isLoading) {
     return (
       <div className="mt-6 rounded-3xl bg-white/90 p-6 shadow-lg shadow-sky-100">
@@ -19,7 +48,7 @@ export default function SummaryCard({ summary, onSave, isLoading }) {
 
   if (!summary) {
     return (
-      <div className="mt-6 rounded-2xl border-2 border-dashed border-slate-200 p-8 text-center">
+      <div className="mt-6 rounded-3xl border-2 border-dashed border-sky-200 bg-white/70 p-8 text-center">
         <h2 className="text-lg font-semibold text-slate-700">
           No Summary Yet
         </h2>
@@ -32,27 +61,49 @@ export default function SummaryCard({ summary, onSave, isLoading }) {
   }
 
   return (
-    <div className="mt-6 rounded-3xl border-2 border-dashed border-sky-200 bg-white/70 p-8 text-center">
+    <div className="mt-6 rounded-3xl bg-white/90 p-6 shadow-lg shadow-sky-100">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-xl font-semibold text-slate-900">
           Summary
         </h2>
 
-        <span className="rounded-full bg-sky-100 px-3 py-1 text-xs font-medium text-sky-700">
-          Generated
-        </span>
+        <button
+          onClick={handleCopy}
+          className="flex items-center gap-2 rounded-xl bg-sky-100 px-3 py-2 text-sm font-medium text-sky-700 hover:bg-sky-200"
+        >
+          {copied ? (
+            <>
+              <Check size={16} />
+              Copied
+            </>
+          ) : (
+            <>
+              <Copy size={16} />
+              Copy
+            </>
+          )}
+        </button>
       </div>
 
       <p className="leading-7 text-slate-700">
         {summary}
       </p>
 
-      <button
-        onClick={onSave}
-        className="mt-5 rounded-xl bg-green-100 px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-200"
-      >
-        Save Summary
-      </button>
+      <div className="mt-6 flex justify-end">
+        <button
+          onClick={handleSave}
+          className="rounded-xl bg-green-100 px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-200"
+        >
+          {saved ? (
+            <span className="flex items-center gap-2">
+              <Check size={16} />
+              Saved
+            </span>
+          ) : (
+            "Save Summary"
+          )}
+        </button>
+      </div>
     </div>
   );
 }
