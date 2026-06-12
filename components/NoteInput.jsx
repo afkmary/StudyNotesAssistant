@@ -1,4 +1,4 @@
-export default function NoteInput({ notes, setNotes, onGenerate }) {
+export default function NoteInput({ notes, setNotes, onGenerate, isLoading }) {
   return (
     <div className="rounded-3xl bg-white/90 p-6 shadow-lg shadow-sky-100">
 
@@ -16,10 +16,10 @@ export default function NoteInput({ notes, setNotes, onGenerate }) {
 
         <button
           onClick={onGenerate}
-          disabled={!notes.trim()}
-          className="rounded-xl bg-linear-to-r from-sky-400 to-blue-300 px-5 py-3 font-medium text-white hover:from-sky-500 hover:to-blue-400 disabled:cursor-not-allowed disabled:bg-slate-300"
+          disabled={!notes.trim() || isLoading}
+          className="rounded-xl bg-gradient-to-r from-sky-400 to-blue-300 px-5 py-3 font-medium text-white hover:from-sky-500 hover:to-blue-400 disabled:cursor-not-allowed disabled:bg-slate-300"
         >
-          Generate Summary
+          {isLoading ? "Generating..." : "Generate Summary"}
         </button>
       </div>
     </div>

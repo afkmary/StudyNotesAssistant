@@ -8,6 +8,7 @@ import { Sparkles, Cloud, Server } from "lucide-react";
 export default function Home() {
   const [notes, setNotes] = useState("");
   const [summary, setSummary] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <main className="min-h-screen bg-linear-to-br from-green-50 via-sky-50 to-blue-50 px-6 py-10">
@@ -21,14 +22,24 @@ export default function Home() {
         <NoteInput
           notes={notes}
           setNotes={setNotes}
-          onGenerate={() =>
-            setSummary(
-              "This is where the AI-generated summary will appear."
-            )
-          }
+          isLoading={isLoading}
+          onGenerate={() => {
+            setIsLoading(true);
+
+            setTimeout(() => {
+              setSummary("This is where the AI-generated summary will appear.");
+              setIsLoading(false);
+            }, 1000);
+          }}
         />
 
-        <SummaryCard summary={summary} />
+        <SummaryCard
+          summary={summary}
+          isLoading={isLoading}
+          onSave={() =>
+            alert("Save feature will be connected to Azure Blob Storage later.")
+          }
+        />
 
         <div className="mt-10 flex justify-center gap-4">
           <div className="flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm text-green-700">

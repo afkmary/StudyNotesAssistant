@@ -1,4 +1,22 @@
-export default function SummaryCard({ summary }) {
+import LoadingSpinner from "./LoadingSpinner";
+
+export default function SummaryCard({ summary, onSave, isLoading }) {
+  if (isLoading) {
+    return (
+      <div className="mt-6 rounded-3xl bg-white/90 p-6 shadow-lg shadow-sky-100">
+        <h2 className="text-xl font-semibold text-slate-900">
+          Generating Summary
+        </h2>
+
+        <LoadingSpinner />
+
+        <p className="text-center text-slate-500">
+          AI is processing your notes...
+        </p>
+      </div>
+    );
+  }
+
   if (!summary) {
     return (
       <div className="mt-6 rounded-2xl border-2 border-dashed border-slate-200 p-8 text-center">
@@ -28,6 +46,13 @@ export default function SummaryCard({ summary }) {
       <p className="leading-7 text-slate-700">
         {summary}
       </p>
+
+      <button
+        onClick={onSave}
+        className="mt-5 rounded-xl bg-green-100 px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-200"
+      >
+        Save Summary
+      </button>
     </div>
   );
 }
