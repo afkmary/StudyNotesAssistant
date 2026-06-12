@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Study Notes Assistant
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Study Notes Assistant is a web application that helps students review study materials more efficiently. Users can paste study notes into the application, generate AI-powered summaries, and save notes for future review.
+
+This project was developed for the INTP302 Emerging Trends in Software Development Midterm Team Mini Project.
+
+---
+
+## Features
+
+### Current Features
+
+* Paste study notes into the application
+* Generate AI summaries
+* Copy generated summaries
+* Save summaries (UI implemented)
+* Loading and empty states
+* Responsive and user-friendly interface
+* Navigation between Home and Saved Notes pages
+
+### Planned Features
+
+* Azure AI-powered summarization
+* Azure Blob Storage integration
+* Saved notes history
+* Retrieval of previously saved summaries
+
+---
+
+## Technologies Used
+
+### Frontend
+
+* Next.js
+* React
+* Tailwind CSS
+* Lucide React Icons
+
+### Cloud Services
+
+* Azure App Service
+* Azure Blob Storage
+* Azure AI Language Service / Azure OpenAI
+
+---
+
+## How to Run Locally
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Start Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Open Application
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+https://study-notes-assistant.vercel.app/
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Azure Services
 
-## Learn More
+| Service                                  | Purpose                    |
+| ---------------------------------------- | -------------------------- |
+| Azure App Service                        | Hosts the application      |
+| Azure AI Language Service / Azure OpenAI | Generates summaries        |
+| Azure Blob Storage                       | Stores notes and summaries |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Known Limitations
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Current summary generation uses placeholder data until Azure AI integration is completed.
+* Save Summary functionality is currently a frontend placeholder until Blob Storage integration is completed.
+* Saved Notes page is currently a prototype and does not yet display stored notes.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Team Members
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Mary Garcia – Frontend Development and Deployment
+* Jared Lopez – Backend Development and Storage Integration
+* Kate Chinkonglar – AI Integration
+
+---
+
+## Course Information
+
+INTP302 – Emerging Trends in Software Development
+SAIT
+Midterm Team Mini Project
