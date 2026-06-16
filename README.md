@@ -53,7 +53,7 @@ Study Notes Assistant is a web application that helps students organize and revi
 
 | Team Member                       | Responsibilities                                                                                                                                                                                                               |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Mary Garcia**                   | • Project Proposal Document<br>• Next.js project setup<br>• GitHub repository setup<br>• UI/UX Design<br>• AI Summary integration<br>• Azure Blob Storage integration and Save/Delete functionality<br>• Testing and debugging |
+| **Mary Garcia**                   | • Project Proposal Document<br>• Next.js project setup<br>• GitHub repository setup<br>• Vercel deployment<br>• UI/UX Design<br>• AI Summary integration<br>• Azure Blob Storage integration and Save/Delete functionality<br>• Testing and debugging |
 | **Jared Lopez**                   | • Azure Blob Storage setup<br>• API creation for saving and retrieving notes<br>• Storage management functionality<br>• Backend testing                                                                                        |
 | **Utsanakorn Chinkonglar (Kate)** | • Azure AI Services setup via Azure AI Foundry<br>• Built API routes for Key Phrase Extraction, Practice Questions, and Flashcard Generation<br>• Built AI Study Tools section<br>• AI prompt engineering and response testing |
 
