@@ -68,10 +68,14 @@ export default function SummaryCard({ summary, onSave, isLoading }) {
       </div>
 
       <div className="rounded-3xl bg-white/90 p-6 shadow-lg shadow-sky-100">
-        <div className="mb-4 flex justify-end">
+        <div className="flex items-start justify-between gap-4">
+          <p className="flex-1 leading-7 text-slate-700">
+            {summary}
+          </p>
+
           <button
             onClick={handleCopy}
-            className="flex items-center gap-2 rounded-xl bg-sky-100 px-3 py-2 text-sm font-medium text-sky-700 hover:bg-sky-200"
+            className="flex shrink-0 items-center gap-2 rounded-xl bg-sky-100 px-3 py-2 text-sm font-medium text-sky-700 hover:bg-sky-200"
           >
             {copied ? (
               <>
@@ -86,8 +90,6 @@ export default function SummaryCard({ summary, onSave, isLoading }) {
             )}
           </button>
         </div>
-
-        <p className="leading-7 text-slate-700">{summary}</p>
 
         <div className="mt-6 flex justify-end">
           <button
