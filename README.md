@@ -111,8 +111,3 @@ Used to:
 * User authentication
 * Download summaries as PDF
 * Study history and analytics
-
-## Authors
-
-Mary Garcia
-Kate
