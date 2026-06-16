@@ -1,100 +1,38 @@
-# Study Notes Assistant
+## AI Study Tools By Utsanakorn(Kate) Chinkonglar
 
-## Overview
+The app includes three additional AI-powered study features
+built with Azure OpenAI via Azure AI Foundry.
 
-Study Notes Assistant is a web application that helps students review study materials more efficiently. Users can paste study notes into the application, generate AI-powered summaries, and save notes for future review.
+### Features
 
-This project was developed for the INTP302 Emerging Trends in Software Development Midterm Team Mini Project.
+- **Key Phrase Extraction** — Identifies the most important terms and concepts
+  from the pasted notes and displays them as tags.
+- **Practice Questions** — Generates 5 study questions with answers based on
+  the note content. Answers are revealed on tap.
+- **Flashcards** — Creates 6–10 flip cards with a term on the front and a
+  definition on the back, with next/previous navigation.
 
----
+### API Routes
 
-## Features
+| Route | Method | Description |
+|---|---|---|
+| `/api/keyphrases` | POST | Returns key phrases as a JSON array |
+| `/api/questions` | POST | Returns questions and answers as a JSON array |
+| `/api/flashcards` | POST | Returns flashcard front/back pairs as a JSON array |
 
-### Current Features
+### Environment Variables Required
 
-* Paste study notes into the application
-* Generate AI summaries
-* Copy generated summaries
-* Save summaries (UI implemented)
-* Loading and empty states
-* Responsive and user-friendly interface
-* Navigation between Home and Saved Notes pages
+| Variable | Description |
+|---|---|
+| `AZURE_OPENAI_ENDPOINT` | Base endpoint from Azure AI Foundry (domain only) |
+| `AZURE_OPENAI_API_KEY` | API key from Azure AI Foundry project |
+| `AZURE_OPENAI_DEPLOYMENT_NAME` | Deployment name (e.g. `gpt-4.1`) |
+| `AZURE_OPENAI_API_VERSION` | API version (e.g. `2025-01-01-preview`) |
 
-### Planned Features
+### Responsible AI Notes
 
-* Azure AI-powered summarization
-* Azure Blob Storage integration
-* Saved notes history
-* Retrieval of previously saved summaries
-
----
-
-## Technologies Used
-
-### Frontend
-
-* Next.js
-* React
-* Tailwind CSS
-* Lucide React Icons
-
-### Cloud Services
-
-* Azure App Service
-* Azure Blob Storage
-* Azure AI Language Service / Azure OpenAI
-
----
-
-## How to Run Locally
-
-### Install Dependencies
-
-```bash
-npm install
-```
-
-### Start Development Server
-
-```bash
-npm run dev
-```
-
-### Open Application
-
-```text
-http://localhost:3000
-https://study-notes-assistant.vercel.app/
-```
-
-## Azure Services
-
-| Service                                  | Purpose                    |
-| ---------------------------------------- | -------------------------- |
-| Azure App Service                        | Hosts the application      |
-| Azure AI Language Service / Azure OpenAI | Generates summaries        |
-| Azure Blob Storage                       | Stores notes and summaries |
-
----
-
-## Known Limitations
-
-* Current summary generation uses placeholder data until Azure AI integration is completed.
-* Save Summary functionality is currently a frontend placeholder until Blob Storage integration is completed.
-* Saved Notes page is currently a prototype and does not yet display stored notes.
-
----
-
-## Team Members
-
-* Mary Garcia – Frontend Development and Deployment
-* Jared Lopez – Backend Development and Storage Integration
-* Kate Chinkonglar – AI Integration
-
----
-
-## Course Information
-
-INTP302 – Emerging Trends in Software Development
-SAIT
-Midterm Team Mini Project
+- AI-generated content may be incomplete or miss key concepts from the notes.
+- Questions and flashcards should be reviewed by the student before relying on them.
+- No user data is stored by these features — notes are sent to Azure OpenAI for
+  processing only and are not retained.
+- Output quality depends on the length and clarity of the input notes.
