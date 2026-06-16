@@ -1,5 +1,6 @@
 "use client";
 
+import StudyToolsSection from "@/components/StudyToolsSection";
 import { useState } from "react";
 import NoteInput from "@/components/NoteInput";
 import SummaryCard from "@/components/SummaryCard";
@@ -40,6 +41,11 @@ export default function Home() {
             console.log("Save feature will be connected to Azure Blob Storage later.");
           }}
         />
+
+                {/* Kate - AI Study Tools */}
+        <StudyToolsSection noteText={notes} />
+
+        <div className="mt-10 flex justify-center gap-4"></div>
 
         <div className="mt-10 flex justify-center gap-4">
           <div className="flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm text-green-700">
