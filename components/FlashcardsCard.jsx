@@ -148,7 +148,7 @@ export default function FlashcardsCard({ noteText }) {
       )}
 
       {loading && (
-        <div className="mb-4 flex h-[180px] items-center justify-center rounded-2xl bg-sky-50">
+        <div className="mb-4 flex h-45 items-center justify-center rounded-2xl bg-sky-50">
           <div className="flex flex-col items-center gap-2 text-slate-400">
             <Loader2 className="h-6 w-6 animate-spin" />
             <span className="text-sm">Creating flashcards...</span>
