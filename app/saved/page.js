@@ -15,6 +15,20 @@ export default function SavedNotesPage() {
     loadNotes();
   }, []);
 
+  const handleDelete = async (id) => {
+    await fetch("/api/notes/delete", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    });
+
+    setNotes((currentNotes) =>
+      currentNotes.filter((note) => note.name !== id)
+    );
+  };
+
   return (
     <main className="min-h-screen bg-linear-to-br from-green-50 via-sky-50 to-blue-50 px-6 py-10">
       <section className="mx-auto max-w-4xl">
@@ -38,10 +52,24 @@ export default function SavedNotesPage() {
                 key={note.name}
                 className="rounded-3xl bg-white/90 p-5 shadow-lg shadow-sky-100"
               >
-                <h2 className="font-semibold text-slate-700">{note.name}</h2>
-                <p className="mt-1 text-sm text-slate-400">
-                  Saved in Azure Blob Storage
-                </p>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h2 className="font-semibold text-slate-700">
+                      {note.name}
+                    </h2>
+
+                    <p className="mt-1 text-sm text-slate-400">
+                      Saved in Azure Blob Storage
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={() => handleDelete(note.name)}
+                    className="rounded-xl bg-red-50 px-4 py-2 text-sm font-medium text-red-400 hover:bg-red-100"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             ))}
           </div>
