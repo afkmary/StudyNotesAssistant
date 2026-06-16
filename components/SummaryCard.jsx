@@ -2,9 +2,13 @@ import { Copy, Check, FileText } from "lucide-react";
 import { useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 
-export default function SummaryCard({ summary, onSave, isLoading }) {
+export default function SummaryCard({
+  summary,
+  onSave,
+  isLoading,
+  saved,
+}) {
   const [copied, setCopied] = useState(false);
-  const [saved, setSaved] = useState(false);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(summary);
@@ -14,8 +18,6 @@ export default function SummaryCard({ summary, onSave, isLoading }) {
 
   const handleSave = () => {
     onSave?.();
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
   };
 
   if (isLoading) {
@@ -44,7 +46,9 @@ export default function SummaryCard({ summary, onSave, isLoading }) {
       <section className="mt-6">
         <div className="mb-3 flex items-center gap-2">
           <FileText className="h-5 w-5 text-sky-400" />
-          <h2 className="text-xl font-semibold text-slate-700">Summary</h2>
+          <h2 className="text-xl font-semibold text-slate-700">
+            Summary
+          </h2>
         </div>
 
         <div className="rounded-3xl border-2 border-dashed border-sky-200 bg-white/70 p-8 text-center">
@@ -64,12 +68,14 @@ export default function SummaryCard({ summary, onSave, isLoading }) {
     <section className="mt-6">
       <div className="mb-3 flex items-center gap-2">
         <FileText className="h-5 w-5 text-sky-400" />
-        <h2 className="text-xl font-semibold text-slate-700">Summary</h2>
+        <h2 className="text-xl font-semibold text-slate-700">
+          Summary
+        </h2>
       </div>
 
       <div className="rounded-3xl bg-white/90 p-6 shadow-lg shadow-sky-100">
         <div className="flex items-start justify-between gap-4">
-          <p className="flex-1 leading-7 text-slate-700">
+          <p className="flex-1 whitespace-pre-line leading-7 text-slate-700">
             {summary}
           </p>
 
@@ -94,7 +100,11 @@ export default function SummaryCard({ summary, onSave, isLoading }) {
         <div className="mt-6 flex justify-end">
           <button
             onClick={handleSave}
-            className="rounded-xl bg-green-100 px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-200"
+            disabled={saved}
+            className={`rounded-xl px-4 py-2 text-sm font-medium transition ${saved
+                ? "bg-green-100 text-green-700"
+                : "bg-green-100 text-green-700 hover:bg-green-200"
+              }`}
           >
             {saved ? (
               <span className="flex items-center gap-2">
