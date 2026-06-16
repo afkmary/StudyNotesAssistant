@@ -49,44 +49,42 @@ export default function KeyPhrasesCard({ noteText }) {
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <div className="p-2 bg-violet-50 rounded-lg">
-            <Tag className="w-4 h-4 text-violet-600" />
+    <div className="rounded-3xl bg-white/90 p-6 shadow-lg shadow-sky-100 border border-sky-100">
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-50 text-sky-400">
+            <Tag className="h-4 w-4" />
           </div>
-          <h3 className="font-semibold text-gray-800">Key Phrases</h3>
+
+          <h3 className="font-semibold text-slate-700">Key Phrases</h3>
         </div>
+
         {generated && keyphrases.length > 0 && (
-          <span className="text-xs text-gray-400 bg-gray-50 px-2 py-1 rounded-full">
+          <span className="rounded-full bg-sky-50 px-3 py-1 text-xs text-sky-500 border border-sky-100">
             {keyphrases.length} found
           </span>
         )}
       </div>
 
-      {/* Error */}
       {error && (
-        <div className="flex items-start gap-2 bg-red-50 text-red-700 rounded-xl p-3 mb-4 text-sm">
-          <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+        <div className="mb-4 flex items-start gap-2 rounded-2xl bg-red-50 p-3 text-sm text-red-600">
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
-      {/* Empty state */}
       {!generated && !loading && !error && (
-        <p className="text-sm text-gray-400 mb-4">
+        <p className="mb-4 text-sm text-slate-400">
           Extract the most important terms and concepts from your notes.
         </p>
       )}
 
-      {/* Key phrases display */}
       {generated && keyphrases.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="mb-4 flex flex-wrap gap-2">
           {keyphrases.map((phrase, index) => (
             <span
               key={index}
-              className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-violet-50 text-violet-700 border border-violet-100"
+              className="inline-flex items-center rounded-full border border-sky-100 bg-sky-50 px-3 py-1.5 text-sm font-medium text-sky-600"
             >
               {phrase}
             </span>
@@ -94,16 +92,15 @@ export default function KeyPhrasesCard({ noteText }) {
         </div>
       )}
 
-      {/* Action buttons */}
       <div className="flex gap-2">
         <button
           onClick={handleGenerate}
           disabled={loading}
-          className="flex items-center gap-2 px-4 py-2 bg-violet-600 hover:bg-violet-700 disabled:bg-violet-300 text-white text-sm font-medium rounded-xl transition-colors"
+          className="flex items-center gap-2 rounded-xl bg-purple-300 px-5 py-3 text-sm font-medium text-white transition hover:bg-purple-400 disabled:cursor-not-allowed disabled:bg-slate-200"
         >
           {loading ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <Loader2 className="h-4 w-4 animate-spin" />
               Extracting...
             </>
           ) : generated ? (
@@ -112,10 +109,11 @@ export default function KeyPhrasesCard({ noteText }) {
             "Extract Key Phrases"
           )}
         </button>
+
         {generated && (
           <button
             onClick={handleReset}
-            className="px-4 py-2 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+            className="rounded-xl px-4 py-3 text-sm text-slate-400 transition hover:bg-sky-50 hover:text-sky-500"
           >
             Clear
           </button>

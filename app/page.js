@@ -12,14 +12,8 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <main className="min-h-screen bg-linear-to-br from-green-50 via-sky-50 to-blue-50 px-6 py-10">
+    <main className="min-h-screen bg-linear-to-br from-green-50 via-sky-50 to-blue-50 px-6 py-5">
       <section className="mx-auto max-w-4xl">
-        <div className="mb-8 text-center">
-          <p className="text-lg text-slate-600">
-            Paste your notes below to generate an AI summary and save them for future review.
-          </p>
-        </div>
-
         <NoteInput
           notes={notes}
           setNotes={setNotes}
@@ -42,23 +36,25 @@ export default function Home() {
           }}
         />
 
-                {/* Kate - AI Study Tools */}
+        {/* Kate - AI Study Tools */}
         <StudyToolsSection noteText={notes} />
 
-        <div className="mt-10 flex justify-center gap-4"></div>
-
-        <div className="mt-10 flex justify-center gap-4">
-          <div className="flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm text-green-700">
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400">
+          <div className="flex items-center gap-2">
             <Sparkles size={16} />
             <span>AI Summaries</span>
           </div>
 
-          <div className="flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm text-sky-700">
+          <span className="text-slate-300">|</span>
+
+          <div className="flex items-center gap-2">
             <Cloud size={16} />
             <span>Cloud Storage</span>
           </div>
 
-          <div className="flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-4 py-2 text-sm text-cyan-700">
+          <span className="text-slate-300">|</span>
+
+          <div className="flex items-center gap-2">
             <Server size={16} />
             <span>Azure Hosted</span>
           </div>

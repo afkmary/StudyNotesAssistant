@@ -1,33 +1,44 @@
 "use client";
 
 import { useState } from "react";
-import { HelpCircle, ChevronDown, ChevronUp, Loader2, AlertCircle } from "lucide-react";
+import {
+  HelpCircle,
+  ChevronDown,
+  ChevronUp,
+  Loader2,
+  AlertCircle,
+} from "lucide-react";
 
 function QuestionItem({ question, answer, index }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border border-gray-100 rounded-xl overflow-hidden">
+    <div className="overflow-hidden rounded-2xl border border-sky-100 bg-white">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-start justify-between gap-3 p-4 text-left hover:bg-gray-50 transition-colors"
+        className="flex w-full items-start justify-between gap-3 p-4 text-left transition hover:bg-sky-50"
       >
-        <div className="flex gap-3 items-start">
-          <span className="shrink-0 w-6 h-6 rounded-full bg-blue-50 text-blue-600 text-xs font-bold flex items-center justify-center mt-0.5">
+        <div className="flex items-start gap-3">
+          <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sky-50 text-xs font-bold text-sky-500">
             {index + 1}
           </span>
-          <span className="text-sm font-medium text-gray-800">{question}</span>
+
+          <span className="text-sm font-medium text-slate-700">
+            {question}
+          </span>
         </div>
+
         {open ? (
-          <ChevronUp className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
+          <ChevronUp className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
         ) : (
-          <ChevronDown className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
+          <ChevronDown className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
         )}
       </button>
+
       {open && (
         <div className="px-4 pb-4">
-          <div className="ml-9 p-3 bg-blue-50 rounded-lg border-l-2 border-blue-200">
-            <p className="text-sm text-blue-800">{answer}</p>
+          <div className="ml-10 rounded-2xl border-l-2 border-sky-200 bg-sky-50 p-3">
+            <p className="text-sm text-slate-600">{answer}</p>
           </div>
         </div>
       )}
@@ -81,40 +92,41 @@ export default function QuestionsCard({ noteText }) {
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <div className="p-2 bg-blue-50 rounded-lg">
-            <HelpCircle className="w-4 h-4 text-blue-600" />
+    <div className="rounded-3xl border border-sky-100 bg-white/90 p-6 shadow-lg shadow-sky-100">
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-50 text-sky-400">
+            <HelpCircle className="h-4 w-4" />
           </div>
-          <h3 className="font-semibold text-gray-800">Practice Questions</h3>
+
+          <h3 className="font-semibold text-slate-700">
+            Practice Questions
+          </h3>
         </div>
+
         {generated && questions.length > 0 && (
-          <span className="text-xs text-gray-400 bg-gray-50 px-2 py-1 rounded-full">
+          <span className="rounded-full border border-sky-100 bg-sky-50 px-3 py-1 text-xs text-sky-500">
             {questions.length} questions
           </span>
         )}
       </div>
 
-      {/* Error */}
       {error && (
-        <div className="flex items-start gap-2 bg-red-50 text-red-700 rounded-xl p-3 mb-4 text-sm">
-          <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+        <div className="mb-4 flex items-start gap-2 rounded-2xl bg-red-50 p-3 text-sm text-red-600">
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
-      {/* Empty state */}
       {!generated && !loading && !error && (
-        <p className="text-sm text-gray-400 mb-4">
-          Generate practice questions to test your understanding. Tap each question to reveal the answer.
+        <p className="mb-4 text-sm text-slate-400">
+          Generate practice questions to test your understanding. Tap each
+          question to reveal the answer.
         </p>
       )}
 
-      {/* Questions list */}
       {generated && questions.length > 0 && (
-        <div className="space-y-2 mb-4">
+        <div className="mb-4 space-y-3">
           {questions.map((q, index) => (
             <QuestionItem
               key={index}
@@ -126,16 +138,15 @@ export default function QuestionsCard({ noteText }) {
         </div>
       )}
 
-      {/* Action buttons */}
       <div className="flex gap-2">
         <button
           onClick={handleGenerate}
           disabled={loading}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 text-white text-sm font-medium rounded-xl transition-colors"
+          className="flex items-center gap-2 rounded-xl bg-indigo-300 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-400 disabled:cursor-not-allowed disabled:bg-slate-200"
         >
           {loading ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <Loader2 className="h-4 w-4 animate-spin" />
               Generating...
             </>
           ) : generated ? (
@@ -144,10 +155,11 @@ export default function QuestionsCard({ noteText }) {
             "Generate Questions"
           )}
         </button>
+
         {generated && (
           <button
             onClick={handleReset}
-            className="px-4 py-2 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+            className="rounded-xl px-4 py-3 text-sm text-slate-400 transition hover:bg-sky-50 hover:text-sky-500"
           >
             Clear
           </button>

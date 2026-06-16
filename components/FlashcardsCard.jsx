@@ -1,7 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Layers, ChevronLeft, ChevronRight, RotateCcw, Loader2, AlertCircle } from "lucide-react";
+import {
+  Layers,
+  ChevronLeft,
+  ChevronRight,
+  RotateCcw,
+  Loader2,
+  AlertCircle,
+} from "lucide-react";
 
 function FlipCard({ front, back }) {
   const [flipped, setFlipped] = useState(false);
@@ -13,37 +20,43 @@ function FlipCard({ front, back }) {
       onClick={() => setFlipped(!flipped)}
     >
       <div
-        className="relative w-full h-full transition-transform duration-500"
+        className="relative h-full w-full transition-transform duration-500"
         style={{
           transformStyle: "preserve-3d",
           transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* Front */}
         <div
-          className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 rounded-2xl"
+          className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-sky-100 bg-sky-50 p-6"
           style={{ backfaceVisibility: "hidden" }}
         >
-          <span className="text-xs font-medium text-emerald-500 uppercase tracking-widest mb-3">
+          <span className="mb-3 text-xs font-medium uppercase tracking-widest text-sky-400">
             Term
           </span>
-          <p className="text-lg font-semibold text-gray-800 text-center">{front}</p>
-          <span className="mt-4 text-xs text-emerald-400">Tap to flip</span>
+
+          <p className="text-center text-lg font-semibold text-slate-700">
+            {front}
+          </p>
+
+          <span className="mt-4 text-xs text-sky-400">Tap to flip</span>
         </div>
 
-        {/* Back */}
         <div
-          className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-2xl"
+          className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-emerald-200 bg-emerald-300 p-6"
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }}
         >
-          <span className="text-xs font-medium text-teal-200 uppercase tracking-widest mb-3">
+          <span className="mb-3 text-xs font-medium uppercase tracking-widest text-white/80">
             Definition
           </span>
-          <p className="text-sm text-white text-center leading-relaxed">{back}</p>
-          <span className="mt-4 text-xs text-teal-300">Tap to flip back</span>
+
+          <p className="text-center text-sm leading-relaxed text-white">
+            {back}
+          </p>
+
+          <span className="mt-4 text-xs text-white/80">Tap to flip back</span>
         </div>
       </div>
     </div>
@@ -99,51 +112,50 @@ export default function FlashcardsCard({ noteText }) {
   };
 
   const prev = () => setCurrentIndex((i) => Math.max(0, i - 1));
-  const next = () => setCurrentIndex((i) => Math.min(flashcards.length - 1, i + 1));
+  const next = () =>
+    setCurrentIndex((i) => Math.min(flashcards.length - 1, i + 1));
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <div className="p-2 bg-emerald-50 rounded-lg">
-            <Layers className="w-4 h-4 text-emerald-600" />
+    <div className="rounded-3xl border border-sky-100 bg-white/90 p-6 shadow-lg shadow-sky-100">
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-50 text-sky-400">
+            <Layers className="h-4 w-4" />
           </div>
-          <h3 className="font-semibold text-gray-800">Flashcards</h3>
+
+          <h3 className="font-semibold text-slate-700">Flashcards</h3>
         </div>
+
         {generated && flashcards.length > 0 && (
-          <span className="text-xs text-gray-400 bg-gray-50 px-2 py-1 rounded-full">
+          <span className="rounded-full border border-sky-100 bg-sky-50 px-3 py-1 text-xs text-sky-500">
             {currentIndex + 1} / {flashcards.length}
           </span>
         )}
       </div>
 
-      {/* Error */}
       {error && (
-        <div className="flex items-start gap-2 bg-red-50 text-red-700 rounded-xl p-3 mb-4 text-sm">
-          <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+        <div className="mb-4 flex items-start gap-2 rounded-2xl bg-red-50 p-3 text-sm text-red-600">
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
-      {/* Empty state */}
       {!generated && !loading && !error && (
-        <p className="text-sm text-gray-400 mb-4">
-          Turn your notes into flashcards. Tap each card to reveal the definition.
+        <p className="mb-4 text-sm text-slate-400">
+          Turn your notes into flashcards. Tap each card to reveal the
+          definition.
         </p>
       )}
 
-      {/* Loading state */}
       {loading && (
-        <div className="flex items-center justify-center h-[180px] bg-gray-50 rounded-2xl mb-4">
-          <div className="flex flex-col items-center gap-2 text-gray-400">
-            <Loader2 className="w-6 h-6 animate-spin" />
+        <div className="mb-4 flex h-[180px] items-center justify-center rounded-2xl bg-sky-50">
+          <div className="flex flex-col items-center gap-2 text-slate-400">
+            <Loader2 className="h-6 w-6 animate-spin" />
             <span className="text-sm">Creating flashcards...</span>
           </div>
         </div>
       )}
 
-      {/* Flashcard viewer */}
       {generated && flashcards.length > 0 && !loading && (
         <>
           <div className="mb-4">
@@ -154,27 +166,24 @@ export default function FlashcardsCard({ noteText }) {
             />
           </div>
 
-          {/* Navigation */}
-          <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="mb-4 flex items-center justify-center gap-3">
             <button
               onClick={prev}
               disabled={currentIndex === 0}
-              className="p-2 rounded-xl hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="rounded-xl p-2 transition hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-30"
             >
-              <ChevronLeft className="w-5 h-5 text-gray-600" />
+              <ChevronLeft className="h-5 w-5 text-slate-500" />
             </button>
 
-            {/* Dot indicators */}
             <div className="flex gap-1.5">
               {flashcards.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentIndex(i)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    i === currentIndex
-                      ? "bg-emerald-500 w-4"
-                      : "bg-gray-200 hover:bg-gray-300"
-                  }`}
+                  className={`h-2 rounded-full transition-all ${i === currentIndex
+                    ? "w-4 bg-emerald-300"
+                    : "w-2 bg-sky-100 hover:bg-sky-200"
+                    }`}
                 />
               ))}
             </div>
@@ -182,39 +191,39 @@ export default function FlashcardsCard({ noteText }) {
             <button
               onClick={next}
               disabled={currentIndex === flashcards.length - 1}
-              className="p-2 rounded-xl hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="rounded-xl p-2 transition hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-30"
             >
-              <ChevronRight className="w-5 h-5 text-gray-600" />
+              <ChevronRight className="h-5 w-5 text-slate-500" />
             </button>
           </div>
         </>
       )}
 
-      {/* Action buttons */}
       <div className="flex gap-2">
         <button
           onClick={handleGenerate}
           disabled={loading}
-          className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-300 text-white text-sm font-medium rounded-xl transition-colors"
+          className="flex items-center gap-2 rounded-xl bg-sky-300 px-5 py-3 text-sm font-medium text-white transition hover:bg-sky-400 disabled:cursor-not-allowed disabled:bg-slate-200"
         >
           {loading ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <Loader2 className="h-4 w-4 animate-spin" />
               Creating...
             </>
           ) : generated ? (
             <>
-              <RotateCcw className="w-4 h-4" />
+              <RotateCcw className="h-4 w-4" />
               Regenerate
             </>
           ) : (
             "Create Flashcards"
           )}
         </button>
+
         {generated && (
           <button
             onClick={handleReset}
-            className="px-4 py-2 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+            className="rounded-xl px-4 py-3 text-sm text-slate-400 transition hover:bg-sky-50 hover:text-sky-500"
           >
             Clear
           </button>

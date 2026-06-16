@@ -10,7 +10,8 @@ export default function NoteInput({
         value={notes}
         onChange={(event) => setNotes(event.target.value)}
         placeholder="Example: Paste lecture notes, textbook notes, or study material here..."
-        className="h-64 w-full resize-none rounded-2xl border border-sky-200 p-4 text-slate-900 outline-none focus:border-sky-400"
+        className="h-64 w-full resize-none rounded-2xl border border-sky-200 p-4 text-slate-900 outline-none focus:border-sky-400 
+        placeholder:italic placeholder:text-slate-300"
       />
 
       <div className="mt-4 flex items-center justify-between">
