@@ -49,8 +49,25 @@ export default function Home() {
         <SummaryCard
           summary={summary}
           isLoading={isLoading}
-          onSave={() => {
-            console.log("Save feature will be connected to Azure Blob Storage later.");
+          onSave={async () => {
+            try {
+              const id = `summary-${Date.now()}.txt`;
+
+              await fetch("/api/notes/save", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  id,
+                  content: summary,
+                }),
+              });
+
+              console.log("Summary saved.");
+            } catch (error) {
+              console.error("Save failed:", error);
+            }
           }}
         />
 
