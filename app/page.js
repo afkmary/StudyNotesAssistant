@@ -73,13 +73,6 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-linear-to-br from-green-50 via-sky-50 to-blue-50 px-6 py-10">
       <section className="mx-auto max-w-4xl">
-        <div className="mb-8 text-center">
-          <p className="text-lg text-slate-600">
-            Paste your notes below to generate an AI summary and save them for
-            future review.
-          </p>
-        </div>
-
         <NoteInput
           notes={notes}
           setNotes={setNotes}
