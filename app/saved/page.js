@@ -13,7 +13,7 @@ export default function SavedNotesPage() {
             No Saved Notes Yet
           </h2>
 
-          <p className="mt-2 text-slate-500">
+          <p className="mt-2 text-slate-400">
             Once notes are saved, they will show up on this page.
           </p>
         </div>
