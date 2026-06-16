@@ -18,13 +18,31 @@ export default function Home() {
           notes={notes}
           setNotes={setNotes}
           isLoading={isLoading}
-          onGenerate={() => {
+          onGenerate={async () => {
             setIsLoading(true);
 
-            setTimeout(() => {
-              setSummary("/api/summarize");
+            try {
+              const response = await fetch("/api/summary", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ text: notes }),
+              });
+
+              const data = await response.json();
+
+              if (!response.ok) {
+                setSummary(data.error || "Failed to generate summary.");
+                return;
+              }
+
+              setSummary(data.summary);
+            } catch {
+              setSummary("Network error. Please try again.");
+            } finally {
               setIsLoading(false);
-            }, 1000);
+            }
           }}
         />
 
