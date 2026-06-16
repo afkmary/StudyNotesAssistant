@@ -1,38 +1,113 @@
-## AI Study Tools By Utsanakorn(Kate) Chinkonglar
+# Study Notes Assistant
 
-The app includes three additional AI-powered study features
-built with Azure OpenAI via Azure AI Foundry.
+Study Notes Assistant is a web application that helps students organize and review study material using AI-powered tools. Users can paste lecture notes, textbook content, or study material and generate summaries, key phrases, practice questions, and flashcards. Notes can also be saved to Azure Blob Storage for future access.
 
-### Features
+## Features
 
-- **Key Phrase Extraction** — Identifies the most important terms and concepts
-  from the pasted notes and displays them as tags.
-- **Practice Questions** — Generates 5 study questions with answers based on
-  the note content. Answers are revealed on tap.
-- **Flashcards** — Creates 6–10 flip cards with a term on the front and a
-  definition on the back, with next/previous navigation.
+### AI Summary Generation
 
-### API Routes
+* Generate concise summaries from study notes using Azure OpenAI.
+* Beginner-friendly summaries that highlight key concepts.
+* Copy summaries to the clipboard.
+* Save summaries to Azure Blob Storage.
 
-| Route | Method | Description |
-|---|---|---|
-| `/api/keyphrases` | POST | Returns key phrases as a JSON array |
-| `/api/questions` | POST | Returns questions and answers as a JSON array |
-| `/api/flashcards` | POST | Returns flashcard front/back pairs as a JSON array |
+### Key Phrase Extraction
 
-### Environment Variables Required
+* Extract important terms and concepts from study notes.
+* Highlights keywords that are useful for studying and review.
 
-| Variable | Description |
-|---|---|
-| `AZURE_OPENAI_ENDPOINT` | Base endpoint from Azure AI Foundry (domain only) |
-| `AZURE_OPENAI_API_KEY` | API key from Azure AI Foundry project |
-| `AZURE_OPENAI_DEPLOYMENT_NAME` | Deployment name (e.g. `gpt-4.1`) |
-| `AZURE_OPENAI_API_VERSION` | API version (e.g. `2025-01-01-preview`) |
+### Practice Questions
 
-### Responsible AI Notes
+* Automatically generate practice questions from notes.
+* Includes answers for self-testing and review.
+* Helps reinforce understanding of course material.
 
-- AI-generated content may be incomplete or miss key concepts from the notes.
-- Questions and flashcards should be reviewed by the student before relying on them.
-- No user data is stored by these features — notes are sent to Azure OpenAI for
-  processing only and are not retained.
-- Output quality depends on the length and clarity of the input notes.
+### Flashcards
+
+* Convert study notes into interactive flashcards.
+* Flip cards to reveal definitions and explanations.
+* Navigate between generated flashcards for review.
+
+### Saved Notes
+
+* Save generated summaries to Azure Blob Storage.
+* View saved summaries from the Saved Notes page.
+* Delete saved summaries when no longer needed.
+
+## Technologies Used
+
+### Frontend
+
+* Next.js
+* React
+* Tailwind CSS
+* Lucide React Icons
+
+### Backend
+
+* Next.js API Routes
+* Azure OpenAI Service
+* Azure Blob Storage
+
+## Team Roles and Responsibilities
+
+| Team Member                       | Responsibilities                                                                                                                                                                                                               |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Mary Garcia**                   | • Project Proposal Document<br>• Next.js project setup<br>• GitHub repository setup<br>• UI/UX Design<br>• AI Summary integration<br>• Azure Blob Storage integration and Save/Delete functionality<br>• Testing and debugging |
+| **Jared Lopez**                   | • Azure Blob Storage setup<br>• API creation for saving and retrieving notes<br>• Storage management functionality<br>• Backend testing                                                                                        |
+| **Utsanakorn Chinkonglar (Kate)** | • Azure AI Services setup via Azure AI Foundry<br>• Built API routes for Key Phrase Extraction, Practice Questions, and Flashcard Generation<br>• Built AI Study Tools section<br>• AI prompt engineering and response testing |
+
+## Project Structure
+
+```text
+app/
+├── api/
+│   ├── summarize/
+│   ├── keyphrases/
+│   ├── questions/
+│   ├── flashcards/
+│   └── notes/
+│       ├── save/
+│       ├── list/
+│       └── delete/
+├── saved/
+├── page.js
+
+components/
+├── NoteInput.jsx
+├── SummaryCard.jsx
+├── StudyToolsSection.jsx
+├── KeyPhrasesCard.jsx
+├── QuestionsCard.jsx
+└── FlashcardsCard.jsx
+
+lib/
+└── blobStorage.js
+```
+
+## Azure Services
+
+### Azure OpenAI
+
+Used to generate:
+
+* Summaries
+* Key Phrases
+* Practice Questions
+* Flashcards
+
+### Azure Blob Storage
+
+Used to:
+
+* Store saved summaries
+* Retrieve saved summaries
+* Delete saved summaries
+
+## Future Improvements
+
+* Edit saved note titles
+* Search saved notes
+* User authentication
+* Download summaries as PDF
+* Study history and analytics
